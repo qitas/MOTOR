@@ -1,9 +1,9 @@
 
 /* 包含头文件 ----------------------------------------------------------------*/
 #include "stm32f10x.h"
-#include "bsp/57StepMotor/bsp_TB6600_TIM.h" 
-#include "bsp/key/bsp_key.h"
-#include "bsp/usart/bsp_debug_usart.h"
+#include "bsp_TB6600_TIM.h" 
+#include "bsp_key.h"
+#include "bsp_debug_usart.h"
 
 /* 私有类型定义 --------------------------------------------------------------*/
 /* 私有宏定义 ----------------------------------------------------------------*/
