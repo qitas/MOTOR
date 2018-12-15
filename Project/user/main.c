@@ -1,8 +1,8 @@
 
 /* 包含头文件 ----------------------------------------------------------------*/
 #include "stm32f10x.h"
-#include "bsp_TB6600_TIM.h" 
 #include "bsp_key.h"
+#include "bsp_TB6600_TIM.h" 
 #include "bsp_debug_usart.h"
 
 /* 私有类型定义 --------------------------------------------------------------*/
@@ -42,8 +42,7 @@ int main(void)
     if(KEY1_StateRead()==KEY_DOWN)  // 功能选择
     {
        key1_count++;
-       if(key1_count>10)
-         key1_count=1;
+       if(key1_count>10)key1_count=1;
        printf("key1_count:%d\n",key1_count);
     }
     if(KEY2_StateRead()==KEY_DOWN)  // 功能调节
@@ -100,44 +99,47 @@ int main(void)
           printf("prescaler[3]:%d\n",prescaler[3]);
           break;          
         case 9:                // 方向控制
-          printf("电机转动方向改变\n");
-          if(dir==0)
-          {
-            GPIO_SetBits(TB6600_DIR1_PORT,TB6600_DIR1_PIN);  // 逆时针
-            GPIO_SetBits(TB6600_DIR2_PORT,TB6600_DIR2_PIN);  // 逆时针
-            GPIO_SetBits(TB6600_DIR3_PORT,TB6600_DIR3_PIN);  // 逆时针
-            GPIO_SetBits(TB6600_DIR4_PORT,TB6600_DIR4_PIN);  // 逆时针
-            dir=1;
-          }
-          else
-          {
-            GPIO_ResetBits(TB6600_DIR1_PORT,TB6600_DIR1_PIN);  // 顺时针
-            GPIO_ResetBits(TB6600_DIR2_PORT,TB6600_DIR2_PIN);  // 顺时针
-            GPIO_ResetBits(TB6600_DIR3_PORT,TB6600_DIR3_PIN);  // 顺时针
-            GPIO_ResetBits(TB6600_DIR4_PORT,TB6600_DIR4_PIN);  // 顺时针
-            dir=0;
-          }
-          break;  
-        case 10:                // 使能控制
-          printf("电机转动使能控制\n");
-          if(ena==0)
-          {
-            GPIO_SetBits(TB6600_ENA1_PORT,TB6600_ENA1_PIN); // 停机
-            GPIO_SetBits(TB6600_ENA2_PORT,TB6600_ENA2_PIN); // 停机
-            GPIO_SetBits(TB6600_ENA3_PORT,TB6600_ENA3_PIN); // 停机
-            GPIO_SetBits(TB6600_ENA4_PORT,TB6600_ENA4_PIN); // 停机
-            ena=1;
-            
-          }
-          else
-          {
-            GPIO_ResetBits(TB6600_ENA1_PORT,TB6600_ENA1_PIN);  // 正常运行
-            GPIO_ResetBits(TB6600_ENA2_PORT,TB6600_ENA2_PIN);  // 正常运行
-            GPIO_ResetBits(TB6600_ENA3_PORT,TB6600_ENA3_PIN);  // 正常运行
-            GPIO_ResetBits(TB6600_ENA4_PORT,TB6600_ENA4_PIN);  // 正常运行
-            ena=0;
-          }
-          break;
+				{
+						printf("电机转动方向改变\n");
+						if(dir==0)
+						{
+							GPIO_SetBits(TB6600_DIR1_PORT,TB6600_DIR1_PIN);  // 逆时针
+							GPIO_SetBits(TB6600_DIR2_PORT,TB6600_DIR2_PIN);  // 逆时针
+							GPIO_SetBits(TB6600_DIR3_PORT,TB6600_DIR3_PIN);  // 逆时针
+							GPIO_SetBits(TB6600_DIR4_PORT,TB6600_DIR4_PIN);  // 逆时针
+							dir=1;
+						}
+						else
+						{
+							GPIO_ResetBits(TB6600_DIR1_PORT,TB6600_DIR1_PIN);  // 顺时针
+							GPIO_ResetBits(TB6600_DIR2_PORT,TB6600_DIR2_PIN);  // 顺时针
+							GPIO_ResetBits(TB6600_DIR3_PORT,TB6600_DIR3_PIN);  // 顺时针
+							GPIO_ResetBits(TB6600_DIR4_PORT,TB6600_DIR4_PIN);  // 顺时针
+							dir=0;
+						}
+						break;  
+				}
+        case 10: // 使能控制
+				{
+						printf("电机转动使能控制\n");
+						if(ena==0)
+						{
+								GPIO_SetBits(TB6600_ENA1_PORT,TB6600_ENA1_PIN); // 停机
+								GPIO_SetBits(TB6600_ENA2_PORT,TB6600_ENA2_PIN); // 停机
+								GPIO_SetBits(TB6600_ENA3_PORT,TB6600_ENA3_PIN); // 停机
+								GPIO_SetBits(TB6600_ENA4_PORT,TB6600_ENA4_PIN); // 停机
+								ena=1;						
+						}
+						else
+						{
+								GPIO_ResetBits(TB6600_ENA1_PORT,TB6600_ENA1_PIN);  // 正常运行
+								GPIO_ResetBits(TB6600_ENA2_PORT,TB6600_ENA2_PIN);  // 正常运行
+								GPIO_ResetBits(TB6600_ENA3_PORT,TB6600_ENA3_PIN);  // 正常运行
+								GPIO_ResetBits(TB6600_ENA4_PORT,TB6600_ENA4_PIN);  // 正常运行
+								ena=0;
+						}
+						break;
+				}
         default:
           break;          
       }
